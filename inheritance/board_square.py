@@ -13,5 +13,8 @@ class BoardSquare:
     def action(self, player: Player):
         return NotImplemented
 
-    def print_message(self, player) -> str:
+    def print_message(self, player):
         return NotImplemented
+
+    def __str__(self):
+        return self.name

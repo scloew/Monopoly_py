@@ -1,5 +1,5 @@
 from ..common.player import Player
-from ..common._constants import PROP_PURCHASED
+from ..common.constants import PROP_PURCHASED
 from .board_square import BoardSquare
 
 
@@ -17,13 +17,15 @@ class PropertySquare(BoardSquare):
             if player.money > self.cost:
                 self.owner = player
                 self.print_message(player)
-                self.print_lambda = lambda plyr: print(f'{plyr} lands on {self.name} {self._owner_msg(plyr)}')
+                self.print_lambda = lambda plyr: f'and pays {self.cost} to {self.owner}' if self.owner == player else ''
                 return PROP_PURCHASED
+        self.print_message(player)
         self.owner.add_money(self.cost)
         player.add_money(-self.cost)
+        return None
 
     def print_message(self, player) -> str:
         return self.print_lambda(player)
 
-    def _owner_msg(self, player):
-        return f'and pays {self.cost} to {self.owner}' if self.owner == player else ''
+    def __str__(self):
+        return f'name={self.name} owner={self.owner}'

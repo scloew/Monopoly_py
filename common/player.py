@@ -1,7 +1,7 @@
 from random import randint, choice
 from string import ascii_letters, digits, punctuation
 
-from ._constants import STARTING_MONEY
+from .constants import STARTING_MONEY
 
 
 class Player:
