@@ -8,7 +8,7 @@ from .board_square import BoardSquare
 class ChanceSquare(BoardSquare):
 
     def __init__(self, name):
-        super().__init__(self)
+        super().__init__(name)
         self.print_lambda = None
 
     def action(self, player: Player):

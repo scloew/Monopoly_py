@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9df08494-a7b3-4472-b38d-2faf41ff10f9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inheritance/bathroom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inheritance/chance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inheritance/go_square.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inheritance/go_to_bathroom.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inheritance/loose_change.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inheritance/railroad.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inheritance/tax_square.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inheritance/board_square.py" beforeDir="false" afterPath="$PROJECT_DIR$/inheritance/board_square.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inheritance/property_square.py" beforeDir="false" afterPath="$PROJECT_DIR$/inheritance/property_square.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inheritance/chance.py" beforeDir="false" afterPath="$PROJECT_DIR$/inheritance/chance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inheritance/go_to_bathroom.py" beforeDir="false" afterPath="$PROJECT_DIR$/inheritance/go_to_bathroom.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
