@@ -8,8 +8,7 @@ from .railroad import Railroad
 from .tax_square import TaxSquare
 
 
-from ..common.constants import TAX
-
+TAX = 2
 
 class Board:
     """
@@ -17,14 +16,22 @@ class Board:
     ordinarily would just return a list but wanted to use classmethod and from_ constructors
     """
 
-    def __init__(self, squares: list[tuple], monopolies: list[tuple]):
+    def __init__(self, squares, monopolies):
         # TODO actually implement monopoly group logic
+        #print(squares)
         types = {
             'bathroom': Bathroom, 'chance': ChanceSquare, 'go': GoSquare,
             'go_to_bathroom': GoToBathRoom, 'loose_change': LooseChange,
             'property': PropertySquare, 'railroad': Railroad, 'tax_square': TaxSquare
         }
-        self.squares = [types[class_type](*args_list) for class_type, args_list in squares]
+        self.squares = []
+        for class_type, _, args_list in squares:
+            try:
+                self.squares.append(types[class_type](*args_list))
+            except:
+                pass
+
+        #self.squares = [types[class_type](*args_list) for class_type, _, args_list in squares]
 
     @classmethod
     def from_default(cls):
@@ -55,7 +62,7 @@ class Board:
             ('chance', 17, ('chance',)), ('chance', 19, ('chance',)), ('chance', 12, ('chance',)),
         ))
 
-        return cls(data)
+        return cls(data, [])
 
     @classmethod
     def from_file(cls, file):
@@ -64,6 +71,6 @@ class Board:
 
 if __name__ == '__main__':
     print('hello monopoly?')
-    # board = Board.from_default()
-    # for i, square in enumerate(board.squares):
-    #     print(f'{i}: {square.name}')
+    board = Board.from_default()
+    for i, square in enumerate(board.squares):
+        print(f'{i}: {square}')

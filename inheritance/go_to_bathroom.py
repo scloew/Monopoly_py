@@ -1,10 +1,9 @@
-from ..common.player import Player
 from .property_square import PropertySquare
 
 
 class GoToBathRoom(PropertySquare):
 
-    def action(self, player: Player):
+    def action(self, player):
         return GoToBathRoom
 
     def print_message(self, player):

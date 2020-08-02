@@ -1,4 +1,3 @@
-from ..common.player import Player
 from .board_square import BoardSquare
 
 
@@ -8,7 +7,7 @@ class LooseChange(BoardSquare):
         super().__init__(name)
         self.money_pot = 0
 
-    def action(self, player: Player):
+    def action(self, player):
         player.add_money(self.money_pot)
         self.print_message(player)
         self.money_pot = 0

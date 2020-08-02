@@ -1,16 +1,16 @@
-from ..common.player import Player
-from ..common.constants import TAX
+#from ..common.constants import TAX
 from .board_square import BoardSquare
 from .loose_change import LooseChange
 
+TAX = 2
 
 class TaxSquare(BoardSquare):
 
-    def __init__(self, name, loose_change: LooseChange):
+    def __init__(self, name, loose_change):
         super().__init__(name)
         self.loose_change = loose_change
 
-    def action(self, player: Player):
+    def action(self, player):
         self.loose_change.add_money(TAX)
         self.print_message(player)
 

@@ -1,7 +1,7 @@
-from ..common.player import Player
-from ..common.constants import PROP_PURCHASED
+#from ..common.constants import PROP_PURCHASED
 from .board_square import BoardSquare
 
+PROP_PURCHASED = 1
 
 class PropertySquare(BoardSquare):
     """ class for property square of the board """
@@ -12,7 +12,7 @@ class PropertySquare(BoardSquare):
         self.owner = None
         self.print_lambda = lambda plyr: print(f'{plyr} purchases {self.name} for {self.cost}')
 
-    def action(self, player: Player):
+    def action(self, player):
         if self.owner is None:
             if player.money > self.cost:
                 self.owner = player

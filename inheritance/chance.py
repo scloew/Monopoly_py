@@ -1,8 +1,12 @@
 from random import choice
 
-from ..common.player import Player
-from ..common.constants import CHANCE_ADD_MONEY, CHANCE_MOVE, BOARD_LENGTH
+#from ..common.constants import CHANCE_ADD_MONEY, CHANCE_MOVE, BOARD_LENGTH
 from .board_square import BoardSquare
+
+
+CHANCE_ADD_MONEY = 1
+CHANCE_MOVE = 2
+BOARD_LENGTH = 32
 
 
 class ChanceSquare(BoardSquare):
@@ -11,7 +15,7 @@ class ChanceSquare(BoardSquare):
         super().__init__(name)
         self.print_lambda = None
 
-    def action(self, player: Player):
+    def action(self, player):
         action = choice(CHANCE_MOVE, CHANCE_ADD_MONEY)
         if action == CHANCE_ADD_MONEY:
             money = choice(range(-5, 6))
@@ -22,5 +26,5 @@ class ChanceSquare(BoardSquare):
             self.print_lambda = f'Chance moves {player.name} to square {new_loc}'
         self.print_message(player)
 
-    def print_message(self, player) -> str:
+    def print_message(self, player):
         self.print_lambda(player)
