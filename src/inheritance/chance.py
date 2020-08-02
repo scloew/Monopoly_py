@@ -1,12 +1,6 @@
 from random import choice
-
-#from ..common.constants import CHANCE_ADD_MONEY, CHANCE_MOVE, BOARD_LENGTH
+from ..common.constants import CHANCE_ADD_MONEY, CHANCE_MOVE, BOARD_LENGTH
 from .board_square import BoardSquare
-
-
-CHANCE_ADD_MONEY = 1
-CHANCE_MOVE = 2
-BOARD_LENGTH = 32
 
 
 class ChanceSquare(BoardSquare):

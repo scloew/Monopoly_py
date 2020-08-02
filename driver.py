@@ -1,4 +1,4 @@
-from inheritance.board import Board
+from src.inheritance.board import Board
 
 if __name__ == '__main__':
     b = Board.from_default()

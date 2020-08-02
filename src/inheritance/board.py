@@ -7,8 +7,8 @@ from .property_square import PropertySquare
 from .railroad import Railroad
 from .tax_square import TaxSquare
 
+from ..common.constants import TAX
 
-TAX = 2
 
 class Board:
     """

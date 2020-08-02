@@ -1,7 +1,6 @@
-#from ..common.constants import PASS_GO_BONUS
+from ..common.constants import PASS_GO_BONUS
 from .board_square import BoardSquare
 
-PASS_GO_BONUS = 3
 
 class GoSquare(BoardSquare):
 

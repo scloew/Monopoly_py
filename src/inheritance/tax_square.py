@@ -1,8 +1,6 @@
-#from ..common.constants import TAX
+from ..common.constants import TAX
 from .board_square import BoardSquare
-from .loose_change import LooseChange
 
-TAX = 2
 
 class TaxSquare(BoardSquare):
 
