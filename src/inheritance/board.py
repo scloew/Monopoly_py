@@ -7,8 +7,7 @@ from .property_square import PropertySquare
 from .railroad import Railroad
 from .tax_square import TaxSquare
 
-from ..common.constants import TAX
-
+from ..common.constants import Constants
 
 class Board:
     """
@@ -18,20 +17,36 @@ class Board:
 
     def __init__(self, squares, monopolies):
         # TODO actually implement monopoly group logic
-        #print(squares)
         types = {
             'bathroom': Bathroom, 'chance': ChanceSquare, 'go': GoSquare,
             'go_to_bathroom': GoToBathRoom, 'loose_change': LooseChange,
             'property': PropertySquare, 'railroad': Railroad, 'tax_square': TaxSquare
         }
-        self.squares = []
-        for class_type, _, args_list in squares:
+        lc = LooseChange('Loose Change')
+        Constants.BOARD_LENGTH = len(squares)
+        self.squares = [None for _ in range(Constants.BOARD_LENGTH)]
+        new_line = '\n'
+        for class_type, loc, args_list in squares:
             try:
-                self.squares.append(types[class_type](*args_list))
-            except:
-                pass
-
-        #self.squares = [types[class_type](*args_list) for class_type, _, args_list in squares]
+                if class_type == 'tax_square':
+                    self.squares[loc] = TaxSquare(*args_list, lc)
+                    continue
+                elif class_type == 'loose_change':
+                    self.squares.append(lc)
+                    continue
+                self.squares[loc] = types[class_type](*args_list)
+            except KeyError:
+                print(f'Unknown board square {class_type}')
+                print(f"supported types:{new_line*2}{new_line.join(types.keys())}")
+                quit()
+            except TypeError:
+                print(f'invalid argument list {args_list} for type {class_type}')
+                print(f'expected:\n {help(types[class_type].__init__)}')
+                quit()
+            except IndexError:
+                print(f'attempted to assign square {class_type} {args_list}')
+                print(f'to board location {loc} which is beyond board size of {Constants.BOARD_LENGTH}')
+                quit()
 
     @classmethod
     def from_default(cls):
@@ -53,11 +68,12 @@ class Board:
         ))
 
         data.extend((
-            ('tax_square', 8, ('fire works',)), ('tax_square', 24, ('water works',))
+            ('loose_change', 16, ('Loose Change',)), ('tax_square', 8, ('fire works',)),
+            ('tax_square', 24, ('water works',))
         ))
 
         data.extend((
-            ('go', 0, ('Go',)), ('bathroom', 10, ('bathroom',)), ('go_to_bathroom', 4, ('go to bathroom', None, TAX)),
+            ('go', 0, ('Go',)), ('bathroom', 10, ('bathroom',)), ('go_to_bathroom', 4, ('go to bathroom',)),
             ('chance', 1, ('chance',)), ('chance', 4, ('chance',)), ('chance', 9, ('chance',)),
             ('chance', 17, ('chance',)), ('chance', 19, ('chance',)), ('chance', 12, ('chance',)),
         ))
@@ -67,10 +83,3 @@ class Board:
     @classmethod
     def from_file(cls, file):
         return NotImplemented
-
-
-if __name__ == '__main__':
-    print('hello monopoly?')
-    board = Board.from_default()
-    for i, square in enumerate(board.squares):
-        print(f'{i}: {square}')

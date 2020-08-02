@@ -4,17 +4,19 @@ these maybe over written by utilizing from_file in board_builder
 """
 #TODO get rid of this note when board_builder_has that functionality
 
-PASS_GO_BONUS = 2
-STARTING_MONEY = 35
-TAX = 2
-BATHROOM_TAX = 3
-TURN_LIMIT = 100
-BOARD_LENGTH = 32
 
-CHANCE_ADD_MONEY = 1
-CHANCE_MOVE = 2
+class Constants:
+    PASS_GO_BONUS = 2
+    STARTING_MONEY = 35
+    TAX = 2
+    BATHROOM_TAX = 3
+    TURN_LIMIT = 100
+    BOARD_LENGTH = None
 
-PROP_PURCHASED = 1
-CHANCE_SET_LOC = 2
-GO_TO_BATHROOM = 3
-ROLL_AGAIN = 4
+    CHANCE_ADD_MONEY = 'ADD_MONEY'
+    CHANCE_MOVE = 'MOVE'
+    CHANCE_SET_LOC = 'SET_LOCATION'
+
+    PROP_PURCHASED = 'PURCHASED'
+    GO_TO_BATHROOM = 'GO_TO_BATHROOM'
+    ROLL_AGAIN = 'ROLL_AGAIN'

@@ -1,7 +1,7 @@
-from .property_square import PropertySquare
+from .board_square import BoardSquare
 
 
-class GoToBathRoom(PropertySquare):
+class GoToBathRoom(BoardSquare):
 
     def action(self, player):
         return GoToBathRoom

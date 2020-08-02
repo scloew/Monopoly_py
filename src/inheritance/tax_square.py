@@ -1,4 +1,4 @@
-from ..common.constants import TAX
+from ..common.constants import Constants
 from .board_square import BoardSquare
 
 
@@ -9,7 +9,7 @@ class TaxSquare(BoardSquare):
         self.loose_change = loose_change
 
     def action(self, player):
-        self.loose_change.add_money(TAX)
+        self.loose_change.add_money(Constants.TAX)
         self.print_message(player)
 
     def print_message(self, player):
