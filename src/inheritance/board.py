@@ -25,24 +25,29 @@ class Board:
 
     def _build_squares(self, squares):
         Constants.BOARD_LENGTH = len(squares)
-        self.squares = [None for _ in range(Constants.BOARD_LENGTH)]
+        squares_tmp = [None for _ in range(Constants.BOARD_LENGTH)]
         self.types = {
             'bathroom': Bathroom, 'chance': ChanceSquare, 'go': GoSquare,
             'go_to_bathroom': GoToBathRoom, 'loose_change': LooseChange,
             'property': PropertySquare, 'railroad': Railroad, 'tax_square': TaxSquare
         }
         lc = LooseChange('Loose Change')
+        go_loc = 0
         for class_type, loc, args_list in squares:
             try:
                 if class_type == 'tax_square':
-                    self.squares[loc] = TaxSquare(*args_list, lc)
+                    squares_tmp[loc] = TaxSquare(*args_list, lc)
                     continue
+                elif class_type == 'go':
+                    squares_tmp[loc] = (GoSquare(*args_list))
+                    go_loc = loc
                 elif class_type == 'loose_change':
-                    self.squares.append(lc)
+                    squares_tmp[loc] = lc
                     continue
-                self.squares[loc] = self. types[class_type](*args_list)
+                squares_tmp[loc] = self.types[class_type](*args_list)
             except Exception as e:
                 self._handle_board_error(e, class_type, loc, args_list)
+        self.squares = squares_tmp[go_loc:] + squares_tmp[:go_loc]
 
     def _build_monopolies(self, monopolies):
         #TODO ugly and I hate this
@@ -69,13 +74,13 @@ class Board:
         data = []
         data.extend((
             ('property', 2, ('Magenta 1', 1)), ('property', 3, ('Magenta 2', 1)),
-            ('property', 6, ('Azure 1', 2)), ('property', 7, ('Azure 2', 2)),
-            ('property', 11, ('Purple 1', 2)), ('property', 15, ('Purple 2', 2)),
+            ('property', 6, ('Azure 1', 2)),   ('property', 7, ('Azure 2', 2)),
+            ('property', 11, ('Purple 1', 2)), ('property', 12, ('Purple 2', 2)),
             ('property', 14, ('Orange 1', 3)), ('property', 15, ('Orange 2', 3)),
-            ('property', 18, ('Red 1', 3)), ('property', 19, ('Red 2', 3)),
-            ('property', 22, ('Yellow 1', 4)), ('property', 22, ('Yellow 2', 4)),
-            ('property', 27, ('Green 1', 4)), ('property', 27, ('Green 2', 4)),
-            ('property', 30, ('Blue 1', 2)), ('property', 31, ('Blue 2', 2)),
+            ('property', 18, ('Red 1', 3)),    ('property', 19, ('Red 2', 3)),
+            ('property', 22, ('Yellow 1', 4)), ('property', 23, ('Yellow 2', 4)),
+            ('property', 27, ('Green 1', 4)),  ('property', 28, ('Green 2', 4)),
+            ('property', 30, ('Blue 1', 2)),   ('property', 31, ('Blue 2', 2)),
         ))
 
         monopolies = ((data[i][1], data[i + 1][1]) for i in range(0, len(data), 2))
@@ -91,12 +96,15 @@ class Board:
         ))
 
         data.extend((
-            ('go', 0, ('Go',)), ('bathroom', 10, ('bathroom',)), ('go_to_bathroom', 4, ('go to bathroom',)),
+            ('go', 0, ('Go',)), ('bathroom', 10, ('bathroom',)), ('go_to_bathroom', 26, ('go to bathroom',)),
             ('chance', 1, ('chance',)), ('chance', 4, ('chance',)), ('chance', 9, ('chance',)),
-            ('chance', 17, ('chance',)), ('chance', 19, ('chance',)), ('chance', 12, ('chance',)),
+            ('chance', 17, ('chance',)), ('chance', 20, ('chance',)), ('chance', 25, ('chance',)),
         ))
 
         return cls(data, monopolies)
+
+    def __str__(self):
+        return
 
     @classmethod
     def from_file(cls, file):

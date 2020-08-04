@@ -7,5 +7,7 @@ if __name__ == '__main__':
 
     print(f'monopolies are {b.monopolies}')
 
-    for key, val in b.monopolies.items():
-        print(val)
+    print(str(b.squares[3]))
+    #
+    # for key, val in b.monopolies.items():
+    #     print(val)

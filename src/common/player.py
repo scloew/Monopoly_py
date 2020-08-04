@@ -1,7 +1,7 @@
 from random import randint, choice
 from string import ascii_letters, digits, punctuation
 
-from .constants import STARTING_MONEY
+from .constants import Constants
 
 
 class Player:
@@ -17,7 +17,8 @@ class Player:
             self.name = ''.join((choice(chars) for _ in range(randint(5, 20))))
         else:
             self.name = name
-        self.money = STARTING_MONEY
+        self.money = Constants.STARTING_MONEY
+        self.loc = 0
 
     def is_broke(self):
         return self.money > 0
