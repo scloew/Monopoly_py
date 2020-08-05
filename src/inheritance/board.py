@@ -14,7 +14,7 @@ from ..common.monopoly_group import MonopolyGroup
 class Board:
     """
     class containing the monopoly squares making up the board
-    ordinarily would just return a list but wanted to use classmethod and from_ constructors
+    ordinarily would just return a list but wanted to use class method and from_ constructors
     """
 
     def __init__(self, squares, monopolies):
@@ -47,10 +47,13 @@ class Board:
                 squares_tmp[loc] = self.types[class_type](*args_list)
             except Exception as e:
                 self._handle_board_error(e, class_type, loc, args_list)
+
+        if None in squares_tmp:
+            print(f'square {squares_tmp.index(None)} is None; please make sure all indices are valid squares')
+            quit()
         self.squares = squares_tmp[go_loc:] + squares_tmp[:go_loc]
 
     def _build_monopolies(self, monopolies):
-        #TODO ugly and I hate this
         for mn in monopolies:
             temp_monopoly = MonopolyGroup(mn)
             for i in mn:
@@ -104,7 +107,7 @@ class Board:
         return cls(data, monopolies)
 
     def __str__(self):
-        return
+        return ' '.join(str(sqr) for sqr in self.squares)
 
     @classmethod
     def from_file(cls, file):
