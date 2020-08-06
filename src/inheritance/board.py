@@ -38,12 +38,13 @@ class Board:
                 if class_type == 'tax_square':
                     squares_tmp[loc] = TaxSquare(*args_list, lc)
                     continue
-                elif class_type == 'go':
-                    squares_tmp[loc] = (GoSquare(*args_list))
-                    go_loc = loc
                 elif class_type == 'loose_change':
                     squares_tmp[loc] = lc
                     continue
+                elif class_type == 'go':
+                    go_loc = loc
+                elif class_type == 'bathroom':
+                    self.bathroom_loc = loc
                 squares_tmp[loc] = self.types[class_type](*args_list)
             except Exception as e:
                 self._handle_board_error(e, class_type, loc, args_list)
@@ -55,7 +56,8 @@ class Board:
 
     def _build_monopolies(self, monopolies):
         for mn in monopolies:
-            temp_monopoly = MonopolyGroup(mn)
+            props = (self.squares[sqr] for sqr in mn)
+            temp_monopoly = MonopolyGroup(props)
             for i in mn:
                 self.monopolies[i] = temp_monopoly
 

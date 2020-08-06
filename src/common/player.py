@@ -29,6 +29,9 @@ class Player:
     def __str__(self):
         return f'{self.name}: {self.money}'
 
-    @classmethod
-    def roll(cls):
-        return randint(1, 7)
+    def roll(self):
+        self.loc = (self.loc + randint(0, 6)) % Constants.BOARD_LENGTH
+        return self.loc
+
+    def __str__(self):
+        return self.name

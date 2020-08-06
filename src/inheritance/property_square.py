@@ -1,4 +1,4 @@
-from ..common import constants
+from ..common.constants import Constants
 from .board_square import BoardSquare
 
 
@@ -17,7 +17,7 @@ class PropertySquare(BoardSquare):
                 self.owner = player
                 self.print_message(player)
                 self.print_lambda = lambda plyr: f'and pays {self.cost} to {self.owner}' if self.owner == player else ''
-                return constants.PROP_PURCHASED
+                return Constants.PROP_PURCHASED
         self.print_message(player)
         self.owner.add_money(self.cost)
         player.add_money(-self.cost)

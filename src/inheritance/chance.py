@@ -15,11 +15,13 @@ class ChanceSquare(BoardSquare):
         if action == Constants.CHANCE_ADD_MONEY:
             money = choice(range(-5, 6))
             player.add_money(money)
-            self.print_msg = f'chance contributes ${money} to {player.name}'
+            self.print_msg = f'chance contributes ${money} to {player}'
         else:
             new_loc = choice(range(Constants.board_length))
-            self.print_msg = f'Chance moves {player.name} to square {new_loc}'
+            self.print_msg = f'Chance moves {player} to square {new_loc}'
+            player.loc = new_loc
         self.print_message(player)
+        return action
 
     def print_message(self, player):
         self.print_msg(player)

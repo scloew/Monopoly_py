@@ -11,3 +11,6 @@ class MonopolyGroup:
             for prop in self.props:
                 prop.cost *= 2
             print(f'{" ".join((p.name for p in self.props))} are now a monopoly owned by {owners.pop()}')
+
+    def __str__(self):
+        return ' - '.join(str(prop) for prop in self.props)
