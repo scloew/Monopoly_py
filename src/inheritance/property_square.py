@@ -15,6 +15,7 @@ class PropertySquare(BoardSquare):
         if self.owner is None:
             if player.money > self.cost:
                 self.owner = player
+                player.add_money(-self.cost)
                 self.print_message(player)
                 self.print_lambda = lambda plyr: f'and pays {self.cost} to {self.owner}' if self.owner == player else ''
                 return Constants.PROP_PURCHASED

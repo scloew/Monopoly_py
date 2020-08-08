@@ -21,7 +21,7 @@ class Player:
         self.loc = 0
 
     def is_broke(self):
-        return self.money > 0
+        return self.money <= 0
 
     def add_money(self, amt):
         self.money += amt
@@ -30,7 +30,7 @@ class Player:
         return f'{self.name}: {self.money}'
 
     def roll(self):
-        self.loc = (self.loc + randint(0, 6)) % Constants.BOARD_LENGTH
+        self.loc = (self.loc + randint(1, 6)) % Constants.BOARD_LENGTH
         return self.loc
 
     def __str__(self):
