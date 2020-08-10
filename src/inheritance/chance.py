@@ -24,4 +24,4 @@ class ChanceSquare(BoardSquare):
         return action
 
     def print_message(self, player):
-        self.print_msg
+        print(self.print_msg)

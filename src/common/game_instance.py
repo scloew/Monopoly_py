@@ -18,9 +18,7 @@ class GameInstance:
                 if bankrupt:
                     self.report_winners()
                     return None
-                print('\n')
-            # input('break: ')
-            print()
+                print()
             turn_count += 1
 
     def print_turn_status(self, turn_counter):
@@ -42,6 +40,7 @@ class GameInstance:
             self.take_turn(player)
         elif status == Constants.GO_TO_BATHROOM:
             player.loc = self.board.bathroom_loc
+            self.board.squares[player.loc].action()
         elif new_loc < old_loc and not status == Constants.CHANCE_MOVE:
             player.add_money(Constants.PASS_GO_BONUS)
         elif status == Constants.PROP_PURCHASED:
@@ -54,7 +53,7 @@ class GameInstance:
         losers = []
         for player in self.players:
             if player.money == max_money:
-                print(player)
+                print(f'{player} wins with ${player.money}')
             else:
                 losers.append(player.name)
         print('====\nLosers\n====\n')
