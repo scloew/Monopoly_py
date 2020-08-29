@@ -13,7 +13,6 @@ class BoardSquare:
     def print_message(self, player):
         return NotImplemented
 
-
     def build_action(self, type):
         if type == 'monopoly_property':
             pass
