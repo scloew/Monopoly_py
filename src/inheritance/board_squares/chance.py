@@ -1,6 +1,6 @@
 from random import choice
 
-from ..common.constants import Constants
+from src.common.constants import Constants
 from .board_square import BoardSquare
 
 
@@ -20,8 +20,8 @@ class ChanceSquare(BoardSquare):
             new_loc = choice(range(Constants.BOARD_LENGTH))
             self.print_msg = f'Chance moves {player} to square {new_loc}'
             player.loc = new_loc
-        self.print_message(player)
+        self.print_message()
         return action
 
-    def print_message(self, player):
+    def print_message(self):
         print(self.print_msg)
