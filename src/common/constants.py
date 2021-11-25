@@ -2,7 +2,9 @@
 constants used throughout program
 these maybe over written by utilizing from_file in board_builder
 """
-#TODO get rid of this note when board_builder_has that functionality
+
+
+# TODO get rid of this note when board_builder_has that functionality
 
 
 class Constants:

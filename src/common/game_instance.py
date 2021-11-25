@@ -1,6 +1,6 @@
-from src.inheritance.board import Board
-from src.common.player import Player
 from src.common.constants import Constants
+from src.common.player import Player
+from src.inheritance.board import Board
 
 
 class GameInstance:
@@ -33,14 +33,16 @@ class GameInstance:
     def take_turn(self, player):
         old_loc = player.loc
         new_loc = player.roll()
-        print(f'{player.name} rolls {max(new_loc, old_loc)-min(new_loc, old_loc)} and moves to {self.board.squares[new_loc]}')
+        # TODO this should use mod operator
+        print(
+            f'{player.name} rolls {max(new_loc, old_loc) - min(new_loc, old_loc)} and moves to {self.board.squares[new_loc]}')
         status = self.board.squares[new_loc].action(player)
         print(f'{player.name} now has {player.money}')
         if status == Constants.ROLL_AGAIN:
             self.take_turn(player)
         elif status == Constants.GO_TO_BATHROOM:
             player.loc = self.board.bathroom_loc
-            self.board.squares[player.loc].action()
+            self.board.squares[player.loc].action(player)
         elif new_loc < old_loc and not status == Constants.CHANCE_MOVE:
             player.add_money(Constants.PASS_GO_BONUS)
         elif status == Constants.PROP_PURCHASED:

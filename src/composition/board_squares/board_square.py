@@ -7,5 +7,11 @@ class BoardSquare:
     def __init__(self, name, **kwargs):
         self.name = name
 
+    def action(self, player):
+        raise NotImplementedError
+
+    def print_message(self, player):
+        raise NotImplementedError
+
     def __str__(self):
         return self.name

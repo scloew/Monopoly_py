@@ -13,7 +13,7 @@ class Player:
 
     def __init__(self, name=None):
         if not name:
-            chars = ascii_letters+digits+punctuation
+            chars = ascii_letters + digits + punctuation
             self.name = ''.join((choice(chars) for _ in range(randint(5, 20))))
         else:
             self.name = name
