@@ -34,8 +34,9 @@ class GameInstance:
         old_loc = player.loc
         new_loc = player.roll()
         # TODO this should use mod operator
+        roll = new_loc - old_loc if old_loc < new_loc else (old_loc + new_loc) % len(self.board.squares)
         print(
-            f'{player.name} rolls {max(new_loc, old_loc) - min(new_loc, old_loc)} and moves to {self.board.squares[new_loc]}')
+            f'{player.name} rolls {roll} and moves to {self.board.squares[new_loc]}')
         status = self.board.squares[new_loc].action(player)
         print(f'{player.name} now has {player.money}')
         if status == Constants.ROLL_AGAIN:

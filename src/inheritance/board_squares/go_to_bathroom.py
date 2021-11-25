@@ -1,4 +1,4 @@
-from .board_square import BoardSquare
+from src.common.board_square import BoardSquare
 from ...common.constants import Constants
 
 

@@ -1,7 +1,7 @@
 from random import choice
 
 from src.common.constants import Constants
-from .board_square import BoardSquare
+from src.common.board_square import BoardSquare
 
 
 class ChanceSquare(BoardSquare):
